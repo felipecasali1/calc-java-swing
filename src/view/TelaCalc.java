@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,6 +9,8 @@ import javax.swing.JTextField;
 public class TelaCalc extends JFrame {
     private JPanel jpDisplay;
     private JTextField jtfDisplay;
+    
+    private JPanel jpButtons;
     
     private JPanel jpNumbers;
     private JButton jbButton0;
@@ -40,6 +43,10 @@ public class TelaCalc extends JFrame {
         setSize(360, 480);
         setTitle("Calculadora");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
+        
+        
     }
     
     private void actions() {
