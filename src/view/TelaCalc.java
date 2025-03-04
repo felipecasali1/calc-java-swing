@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -42,18 +43,22 @@ public class TelaCalc extends JFrame {
     }
     
     private void init() {
-        setSize(360, 480);
+        setSize(400, 600);
         setTitle("Calculadora");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(10, 10));
         
         jpDisplay = new JPanel();
-        jpButtons = new JPanel(new BorderLayout(8, 8));
-        jpNumbers = new JPanel(new GridLayout(4, 3, 8, 8));
-        jpOperations = new JPanel(new GridLayout(5, 1, 8, 8));
+        jpButtons = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        jpNumbers = new JPanel(new GridLayout(4, 3, 10, 10));
+        jpOperations = new JPanel(new GridLayout(5, 1, 10, 10));
         
-        jtfDisplay = new JTextField();
+        jtfDisplay = new JTextField("0");
+        jtfDisplay.setFont(new Font("Arial", Font.BOLD, 24));
+        jtfDisplay.setHorizontalAlignment(JTextField.RIGHT);
+        jtfDisplay.setPreferredSize(new Dimension(360, 80));
+        jtfDisplay.setEditable(false);
         
         jbButton0 = new JButton("0");
         jbButton1 = new JButton("1");
@@ -74,13 +79,26 @@ public class TelaCalc extends JFrame {
         jbMult = new JButton("*");
         jbDiv = new JButton("/");
         
-        jtfDisplay.setHorizontalAlignment(JTextField.RIGHT);
-        jtfDisplay.setPreferredSize(new Dimension(320, 60));
+        jpDisplay.add(jtfDisplay);
+        jpButtons.add(jpNumbers);
+        jpButtons.add(jpOperations);
         
-        jpDisplay.add(jtfDisplay);
-        jpButtons.add(jpNumbers, BorderLayout.WEST);
-        jpButtons.add(jpOperations, BorderLayout.EAST);
-        jpDisplay.add(jtfDisplay);
+        JButton[] numberButtons = {jbButton0, jbButton1, jbButton2, jbButton3, jbButton4, jbButton5, jbButton6, jbButton7, jbButton8, jbButton9};
+        for (JButton button : numberButtons) {
+            button.setFont(new Font("Arial", Font.BOLD, 18));
+            button.setPreferredSize(new Dimension(80, 80));
+        }
+        
+        JButton[] operationButtons = {jbClear, jbAdd, jbSub, jbMult, jbDiv};
+        for (JButton button : operationButtons) {
+            button.setFont(new Font("Arial", Font.BOLD, 18));
+            button.setPreferredSize(new Dimension(80, 80));
+        }
+        
+        jbComma.setFont(new Font("Arial", Font.BOLD, 18));
+        jbComma.setPreferredSize(new Dimension(80, 80));
+        jbEquals.setFont(new Font("Arial", Font.BOLD, 18));
+        jbEquals.setPreferredSize(new Dimension(80, 80));
         
         jpNumbers.add(jbButton7);
         jpNumbers.add(jbButton8);
