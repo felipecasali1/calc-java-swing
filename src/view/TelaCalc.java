@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -109,8 +111,8 @@ public class TelaCalc extends JFrame {
         jpNumbers.add(jbButton1);
         jpNumbers.add(jbButton2);
         jpNumbers.add(jbButton3);
-        jpNumbers.add(jbButton0);
         jpNumbers.add(jbComma);
+        jpNumbers.add(jbButton0);
         jpNumbers.add(jbEquals);
         
         jpOperations.add(jbClear);
@@ -124,6 +126,41 @@ public class TelaCalc extends JFrame {
     }
     
     private void actions() {
+        Double n1 = 0D;
+        Double n2 = 0D;
+        String operation = "";
+        
+        jbClear.addActionListener((e) -> {
+            jtfDisplay.setText("0");
+        });
+        
+        ActionListener numberListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton clickedButton = (JButton) e.getSource();
+                String buttonText = clickedButton.getText();
+                
+                String currentText = jtfDisplay.getText();
+                if (currentText.equals("0")) {
+                    jtfDisplay.setText(buttonText);
+                } else {
+                    jtfDisplay.setText(currentText + buttonText);
+                }
+            }
+        };
+        
+        jbButton0.addActionListener(numberListener);
+        jbButton1.addActionListener(numberListener);
+        jbButton2.addActionListener(numberListener);
+        jbButton3.addActionListener(numberListener);
+        jbButton4.addActionListener(numberListener);
+        jbButton5.addActionListener(numberListener);
+        jbButton6.addActionListener(numberListener);
+        jbButton7.addActionListener(numberListener);
+        jbButton8.addActionListener(numberListener);
+        jbButton9.addActionListener(numberListener);
+        jbComma.addActionListener(numberListener);
+        
         
     }
 }
