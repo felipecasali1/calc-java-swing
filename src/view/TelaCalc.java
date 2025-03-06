@@ -39,8 +39,7 @@ public class TelaCalc extends JFrame {
     private JButton jbMult;
     private JButton jbDiv;
     
-    private Double n1 = 0D;
-    private Double n2 = 0D;
+    private Double firstNumber = 0D;
     private Integer operation = 0;
     
     public TelaCalc() {
@@ -132,8 +131,7 @@ public class TelaCalc extends JFrame {
     private void actions() {        
         jbClear.addActionListener((e) -> {
             jtfDisplay.setText("0");
-            n1 = 0D;
-            n2 = 0D;
+            firstNumber = 0D;
             operation = 0;
         });
         
@@ -204,25 +202,30 @@ public class TelaCalc extends JFrame {
         
         switch(operation) {
             case 0:
-                n1 = currentNumber;
+                firstNumber = currentNumber;
+                jtfDisplay.setText(String.valueOf(firstNumber));
                 break;
             case 1:
-                n1 += currentNumber;
+                firstNumber += currentNumber;
+                jtfDisplay.setText(String.valueOf(firstNumber));
                 break;
             case 2:
-                n1 -= currentNumber;
+                firstNumber -= currentNumber;
+                jtfDisplay.setText(String.valueOf(firstNumber));
                 break;
             case 3:
-                n1 *= currentNumber;
+                firstNumber *= currentNumber;
+                jtfDisplay.setText(String.valueOf(firstNumber));
                 break;
             case 4:
-                n1 /= currentNumber;
+                firstNumber /= currentNumber;
+                jtfDisplay.setText(String.valueOf(firstNumber));
                 break;
             default:
                 System.out.println("Erro!");
                 break;
         }
 
-        jtfDisplay.setText(String.valueOf(n1));
+        jtfDisplay.setText(String.valueOf(firstNumber));
     }
 }
