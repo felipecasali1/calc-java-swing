@@ -203,29 +203,23 @@ public class TelaCalc extends JFrame {
         switch(operation) {
             case 0:
                 firstNumber = currentNumber;
-                jtfDisplay.setText(String.valueOf(firstNumber));
                 break;
             case 1:
                 firstNumber += currentNumber;
-                jtfDisplay.setText(String.valueOf(firstNumber));
                 break;
             case 2:
                 firstNumber -= currentNumber;
-                jtfDisplay.setText(String.valueOf(firstNumber));
                 break;
             case 3:
                 firstNumber *= currentNumber;
-                jtfDisplay.setText(String.valueOf(firstNumber));
                 break;
             case 4:
                 firstNumber /= currentNumber;
-                jtfDisplay.setText(String.valueOf(firstNumber));
                 break;
             default:
                 System.out.println("Erro!");
                 break;
         }
-
         jtfDisplay.setText(String.valueOf(firstNumber));
     }
 }
