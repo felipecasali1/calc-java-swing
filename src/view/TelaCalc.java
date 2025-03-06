@@ -39,6 +39,10 @@ public class TelaCalc extends JFrame {
     private JButton jbMult;
     private JButton jbDiv;
     
+    private Double n1 = 0D;
+    private Double n2 = 0D;
+    private Integer operation = 0;
+    
     public TelaCalc() {
         init();
         actions();
@@ -125,13 +129,47 @@ public class TelaCalc extends JFrame {
         add(jpButtons, BorderLayout.CENTER);
     }
     
-    private void actions() {
-        Double n1 = 0D;
-        Double n2 = 0D;
-        String operation = "";
-        
+    private void actions() {        
         jbClear.addActionListener((e) -> {
             jtfDisplay.setText("0");
+            n1 = 0D;
+            n2 = 0D;
+            operation = 0;
+        });
+        
+        jbComma.addActionListener((e) -> {
+            if(!jtfDisplay.getText().contains(",")) {
+                jtfDisplay.setText(jtfDisplay.getText() + ".");
+            }
+        });
+        
+        jbAdd.addActionListener((e) -> {
+            prevOperation();
+            operation = 1;
+            jtfDisplay.setText("0");
+        });
+        
+        jbSub.addActionListener((e) -> {
+            prevOperation();
+            operation = 2;
+            jtfDisplay.setText("0");
+        });
+        
+        jbMult.addActionListener((e) -> {
+            prevOperation();
+            operation = 3;
+            jtfDisplay.setText("0");
+        });
+        
+        jbDiv.addActionListener((e) -> {
+            prevOperation();
+            operation = 4;
+            jtfDisplay.setText("0");
+        });
+        
+        jbEquals.addActionListener((e) -> {
+            prevOperation();
+            operation = 0;
         });
         
         ActionListener numberListener = new ActionListener() {
@@ -159,8 +197,32 @@ public class TelaCalc extends JFrame {
         jbButton7.addActionListener(numberListener);
         jbButton8.addActionListener(numberListener);
         jbButton9.addActionListener(numberListener);
-        jbComma.addActionListener(numberListener);
+    }
+    
+    private void prevOperation() {
+        Double currentNumber = Double.valueOf(jtfDisplay.getText());
         
-        
+        switch(operation) {
+            case 0:
+                n1 = currentNumber;
+                break;
+            case 1:
+                n1 += currentNumber;
+                break;
+            case 2:
+                n1 -= currentNumber;
+                break;
+            case 3:
+                n1 *= currentNumber;
+                break;
+            case 4:
+                n1 /= currentNumber;
+                break;
+            default:
+                System.out.println("Erro!");
+                break;
+        }
+
+        jtfDisplay.setText(String.valueOf(n1));
     }
 }
